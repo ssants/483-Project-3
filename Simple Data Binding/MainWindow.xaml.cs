@@ -20,9 +20,22 @@ namespace Simple_Data_Binding
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Model mod;
         public MainWindow()
         {
             InitializeComponent();
+
+            mod = new Model();
+            this.DataContext = mod;
+        }
+
+        private void textbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox b = (TextBox)sender;
+            if (e.Key == Key.Enter)
+            {
+                b.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
         }
     }
 }
